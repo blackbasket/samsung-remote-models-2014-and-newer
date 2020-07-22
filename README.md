@@ -69,12 +69,12 @@ const deviceConfig = {
 }
 
 const tv = new SamsungTv(deviceConfig)
-tv.init()
+await v.init()
 ```
 
 Then request the PIN:
 ```javascript
-tv.requestPin()
+await tv.requestPin()
 ```
 The PIN should appear at your TV.
 
