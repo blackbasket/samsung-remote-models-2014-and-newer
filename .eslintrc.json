@@ -1,0 +1,22 @@
+{
+  "extends": ["eslint-config-airbnb-base", "prettier"],
+  "rules": {
+    "no-underscore-dangle": 0,
+    "no-prototype-builtins": 0,
+    "no-bitwise": 0,
+    "block-scoped-var": 0,
+    "no-var": 1,
+    "vars-on-top": 0,
+    "prefer-destructuring": 0,
+    "camelcase": 0,
+    "dot-notation": 0,
+    "no-redeclare": 0,
+    "prefer-template": 0,
+    "no-plusplus": 0,
+    "no-unused-vars": 0,
+    "eqeqeq": 0,
+    "radix": 0,
+    "func-names": 0,
+    "import/prefer-default-export": 0
+  }
+}
