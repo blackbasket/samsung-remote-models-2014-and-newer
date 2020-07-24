@@ -1,10 +1,12 @@
+/* eslint-disable */
 const SamsungTv = require('samsung-remote')
 
 const args = process.argv.slice(2)
 if (args.length != 2) {
   console.log('Usage: node requestPin.js -ip <address of the TV device>')
   console.log('  e.g. node requestPin.js -ip 192.168.178.50')
-  return
+  process.exit(1)
+  // return
 }
 
 const ip = args[1]
@@ -27,5 +29,4 @@ const deviceConfig = {
 const tv = new SamsungTv(deviceConfig)
 
 // Request PIN
-tv.init()
-  .then(() => tv.requestPin())
+tv.init().then(() => tv.requestPin())

@@ -1,10 +1,14 @@
+/* eslint-disable */
 const SamsungTv = require('samsung-remote')
 
 const args = process.argv.slice(2)
 if (args.length != 4) {
-  console.log('Usage: node connect.js -ip <address of the TV device> -pin <pin>')
+  console.log(
+    'Usage: node connect.js -ip <address of the TV device> -pin <pin>'
+  )
   console.log('  e.g. node connect.js -ip 192.168.178.50 -pin 4873')
-  return
+  // return
+  process.exit(1)
 }
 
 const ip = args[1]

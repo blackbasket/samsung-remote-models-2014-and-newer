@@ -1,3 +1,4 @@
+/* eslint-disable */
 const Hapi = require('hapi')
 const Path = require('path')
 const Inert = require('inert')
@@ -22,9 +23,9 @@ const server = new Hapi.Server({
   host: 'localhost',
   routes: {
     files: {
-      relativeTo: Path.join(__dirname, 'public')
-    }
-  }
+      relativeTo: Path.join(__dirname, 'public'),
+    },
+  },
 })
 
 let samsungTv
@@ -36,18 +37,17 @@ server.route({
     deviceConfig.ip = request.payload.ip
     samsungTv = new SamsungTv(deviceConfig)
     return samsungTv.init()
-  }
+  },
 })
 
 server.route({
   method: 'POST',
   path: '/api/connect',
   handler: (request, h) => {
-    return samsungTv.requestPin()
-      .then(() => {
-        return {}
-      })
-  }
+    return samsungTv.requestPin().then(() => {
+      return {}
+    })
+  },
 })
 
 server.route({
@@ -55,12 +55,10 @@ server.route({
   path: '/api/pair',
   handler: (request, h) => {
     const pin = request.payload.pin
-    return samsungTv.confirmPin(pin)
-      .then(_identity => {
-        return samsungTv.connect()
-          .then(() => _identity)
-      })
-  }
+    return samsungTv.confirmPin(pin).then((_identity) => {
+      return samsungTv.connect().then(() => _identity)
+    })
+  },
 })
 
 server.route({
@@ -70,7 +68,7 @@ server.route({
     const keyCode = request.payload.keyCode
     samsungTv.sendKey(keyCode)
     return {}
-  }
+  },
 })
 
 server.route({
@@ -78,7 +76,7 @@ server.route({
   path: '/',
   handler: (request, h) => {
     return h.file('index.html')
-  }
+  },
 })
 
 server.route({
@@ -86,20 +84,19 @@ server.route({
   path: '/app.js',
   handler: (request, h) => {
     return h.file('app.js')
-  }
+  },
 })
 
 const provision = async () => {
   try {
     await server.register(Inert)
     await server.start()
-  }
-  catch (err) {
-    console.log(err);
-    process.exit(1);
+  } catch (err) {
+    console.log(err)
+    process.exit(1)
   }
 
-  console.log('Server running at:', server.info.uri);
+  console.log('Server running at:', server.info.uri)
 }
 
 provision()

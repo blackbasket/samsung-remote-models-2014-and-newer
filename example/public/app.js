@@ -1,6 +1,7 @@
+/* eslint-disable */
 const hideAll = () => {
   const allCards = document.querySelectorAll('.card-view')
-  allCards.forEach(card => {
+  allCards.forEach((card) => {
     card.style.display = 'none'
   })
 }
@@ -24,12 +25,11 @@ const showCard = (cardId) => {
 const notify = (notification) => {
   const snackbar = document.getElementById('notification-snackbar')
   snackbar.MaterialSnackbar.showSnackbar({
-    message: notification
+    message: notification,
   })
 }
 
 class ConfigView {
-
   constructor(store) {
     this.store = store
     this.ipInput = document.getElementById('config-ip-input')
@@ -47,19 +47,19 @@ class ConfigView {
     fetch('/api/ping', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        ip: this.store.ip
-      })
+        ip: this.store.ip,
+      }),
     })
       .then((response) => response.json())
-      .then(device => {
+      .then((device) => {
         this.store.device = device
 
         new ConfirmDeviceView(this.store).show()
       })
-      .catch(err => {
+      .catch((err) => {
         notify('Failed to ping: ' + err)
       })
       .then(() => hide('config-progress-bar'))
@@ -91,14 +91,14 @@ class ConfirmDeviceView {
     fetch('/api/connect', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
     })
-      .then(response => response.json())
-      .then(response => {
+      .then((response) => response.json())
+      .then((response) => {
         new PinView(this.store).show()
       })
-      .catch(err => {
+      .catch((err) => {
         notify('Failed to connect: ' + err)
       })
   }
@@ -129,17 +129,17 @@ class PinView {
     fetch('/api/pair', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        pin
-      })
+        pin,
+      }),
     })
       .then((response) => response.json())
       .then(() => {
         new SendKeyView(this.store).show()
       })
-      .catch(err => {
+      .catch((err) => {
         notify('Failed to pair: ' + err)
       })
       .then(() => hide('pin-progress-bar'))
@@ -157,7 +157,8 @@ class SendKeyView {
     this.keyInput = document.getElementById('key-input')
     this.confirmButton = document.getElementById('send-key-button')
     this.confirmButton.addEventListener('click', this.confirm.bind(this))
-    document.querySelector('[data-send-key-device-name]').textContent = store.device.name
+    document.querySelector('[data-send-key-device-name]').textContent =
+      store.device.name
   }
 
   confirm(event) {
@@ -170,14 +171,14 @@ class SendKeyView {
     fetch('/api/key', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        keyCode
-      })
+        keyCode,
+      }),
     })
       .then((response) => response.json())
-      .catch(err => {
+      .catch((err) => {
         notify('Failed to pair: ' + err)
       })
       .then(() => hide('send-key-progress-bar'))
