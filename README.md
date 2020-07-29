@@ -76,6 +76,7 @@ const deviceConfig = {
 
 const tv = new SamsungTv(deviceConfig)
 await tv.init()
+// await tv.init(identity) // if paired before
 ```
 
 Then request the PIN:
@@ -89,7 +90,8 @@ The PIN should appear at your TV.
 Confirm the PIN and establish connection:
 
 ```javascript
-tv.confirmPin('9603').then(() => tv.connect())
+const identity = await tv.confirmPin('9603')
+await tv.connect()
 ```
 
 After the connection is established, use SamsungTv#sendKey() to send keys:
