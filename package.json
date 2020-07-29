@@ -1,8 +1,12 @@
 {
-  "name": "samsung-remote",
+  "name": "samsung-remote-models-2014-and-newer-fork",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "files": [
+    "lib",
+    "index.js"
+  ],
   "dependencies": {
     "node-fetch": "^2.0.0",
     "ws": "^4.0.0"
