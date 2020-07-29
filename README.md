@@ -68,7 +68,7 @@ const deviceConfig = {
 Create and initialize an instance of the SamsungTv library:
 
 ```javascript
-const SamsungTv = require('samsung-remote-models-2014-and-newer-fork')
+const SamsungTv = require('samsung-remote-pin-paired')
 
 const deviceConfig = {
   // ...
